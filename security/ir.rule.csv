@@ -1,0 +1,3 @@
+"id","name","model_id/id","groups/id","domain_force","perm_write","perm_create","perm_read","perm_unlink"
+"ba_hr_loan_application.my_loan","my_loan","ba_hr_loan_application.model_ba_hr_loan_application","ba_conf.blancoamor_salesman"," [('user_uid', '=', user.id)] ","False","True","True","False"
+"ba_hr_loan_application.all_loan","all_loan","ba_hr_loan_application.model_ba_hr_loan_application","ba_conf.blancoamor_rh","","True","True","True","True"

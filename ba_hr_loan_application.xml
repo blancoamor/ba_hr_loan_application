@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+  
+        <record id="ba_hr_loan_application_tree" model="ir.ui.view">
+            <field name="name">ba.hr.loan.application.tree</field>
+            <field name="model">ba.hr.loan.application</field>
+            <field name="arch" type="xml">
+                <tree string="Prestamos">
+                    <field name="name" />
+                    <field name="date" />
+                    <field name="reason" />
+
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="ba_hr_loan_application_form" model="ir.ui.view">
+            <field name="name">ba.hr.loan.application</field>
+            <field name="model">ba.hr.loan.application</field>
+            <field name="arch" type="xml">
+                <form string="Prestamo">
+                  <header>
+                            <button name="deny" string="Denegar" type="object" class="oe_highlight"  />
+                            <button name="gestion" string="Gestionar" type="object" class="oe_highlight"  />
+                            <button name="apply" string="Aprobar" type="object" class="oe_highlight"  />
+
+                            <field name="state" widget="statusbar" />
+                  </header>
+
+                    <group col="2" string="Sobre el solicitante" >
+                        <field name="user_id" required="True"/>
+                        <field name="name" required="True"/>
+                        <field name="date" required="True"/>
+                        <field name="antiquity" required="True"/>
+                    </group>
+                    <group col="2" string="Condiciones">
+                        <field name="causa" required="True"/>
+                        <field name="reason" required="True"/>
+                        <field name="emp_sanctions" />
+                        <field name="emp_assistance"/>
+                        <field name="emp_credit" />
+                        <field name="emp_seizure"/>
+                        <field name="amount" required="True"/>
+                    </group>
+                    <group col="1"  >
+                        <field name="magenta_credit"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="ba_hr_loan_application_action" model="ir.actions.act_window">
+            <field name="name">Prestamos</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ba.hr.loan.application</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="ba_hr_loan_application_tree" />
+        </record>
+
+
+        <menuitem action="ba_hr_loan_application_action" id="ba_hr_loan_application_menu" parent="hr.menu_hr_root" sequence="5" />
+        <menuitem action="ba_hr_loan_application_action" id="ba_hr_loan_application_sub_menu" parent="ba_hr_loan_application_menu" sequence="5" />
+    </data>
+</openerp>
