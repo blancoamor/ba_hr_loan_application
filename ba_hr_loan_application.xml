@@ -22,12 +22,13 @@
             <field name="arch" type="xml">
                 <form string="Prestamo">
                   <header>
-                            <button name="deny" string="Denegar" type="object" class="oe_highlight"  />
-                            <button name="gestion" string="Gestionar" type="object" class="oe_highlight"  />
-                            <button name="apply" string="Aprobar" type="object" class="oe_highlight"  />
+                            <button name="deny" string="Denegar" type="object" class="oe_highlight" groups="ba_conf.blancoamor_rh" />
+                            <button name="gestion" string="Gestionar" type="object" class="oe_highlight"  groups="ba_conf.blancoamor_rh"/>
+                            <button name="apply" string="Aprobar" type="object" class="oe_highlight" groups="ba_conf.blancoamor_rh"/>
 
                             <field name="state" widget="statusbar" />
                   </header>
+        <sheet>
 
                     <group col="2" string="Sobre el solicitante" >
                         <field name="user_id" required="True"/>
@@ -45,8 +46,15 @@
                         <field name="amount" required="True"/>
                     </group>
                     <group col="1"  >
-                        <field name="magenta_credit"/>
+                        <field name="magenta_credit"  groups="magenta.blancoamor_credito" />
                     </group>
+
+        </sheet>
+                <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread" options="{&quot;thread_level&quot;: 1}"/>
+                </div>
+
                 </form>
             </field>
         </record>
