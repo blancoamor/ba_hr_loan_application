@@ -81,8 +81,8 @@ class ba_hr_loan_application(models.Model):
 
     magenta_credit = fields.Many2one('magenta.ayuda','Credito') 
 
-    capital = fields.Float("Capital", related='magenta_credit.capital',store=True)
-    total_paga = fields.Float('Total Pagado',related='magenta_credit.total_paga',store=True)
+    capital = fields.Float("Capital", related='magenta_credit.capital',store=True,readonly=True)
+    total_paga = fields.Float('Total Pagado',related='magenta_credit.total_paga',store=True,readonly=True)
     #magenta_ayuda_ctas_ids = fields.One2many('magenta.ayuda.ctas','magenta_ayuda_id',)
 
 
@@ -106,9 +106,15 @@ class ba_hr_loan_application(models.Model):
 
     @api.model
     def create(self,vals) :
+
         vals['message_follower_ids'] = []
 
-        blancoamor_credito = self.env['ir.model.data'].get_object( 'magenta', 'blancoamor_credito')
+        blancoamor_credito = self.env['ir.model.data'].get_object('magenta', 'blancoamor_credito')
+        for user in blancoamor_credito.users :
+            vals['message_follower_ids'].append(user.partner_id.id)
+        blancoamor_rh = self.env['ir.model.data'].get_object('ba_conf', 'blancoamor_rh')
+        for user in blancoamor_rh.users :
+            vals['message_follower_ids'].append(user.partner_id.id)
 
         #blancoamor_credito = self.env['ir.model.data'].get_object( 'ba_conf', 'blancoamor_credito')
         rec = super(ba_hr_loan_application, self).create(vals)   
