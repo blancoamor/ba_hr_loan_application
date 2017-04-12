@@ -22,13 +22,16 @@
             <field name="arch" type="xml">
                 <form string="Prestamo">
                   <header>
-                            <button name="deny" string="Denegar" type="object" class="oe_highlight" groups="ba_conf.blancoamor_rh" />
-                            <button name="gestion" string="Gestionar" type="object" class="oe_highlight"  groups="ba_conf.blancoamor_rh"/>
-                            <button name="apply" string="Aprobar" type="object" class="oe_highlight" groups="ba_conf.blancoamor_rh"/>
+                            <button name="deny" string="Denegar" type="object" class="oe_highlight" groups="['ba_conf.blancoamor_rh','magenta.blancoamor_credito']" />
+                            <button name="gestion" string="Gestionar" type="object" class="oe_highlight"  groups="['ba_conf.blancoamor_rh','magenta.blancoamor_credito']"/>
+                            <button name="apply" string="Aprobar" type="object" class="oe_highlight" groups="['ba_conf.blancoamor_rh','magenta.blancoamor_credito']"/>
 
                             <field name="state" widget="statusbar" />
                   </header>
         <sheet>
+
+
+                        <field name="loan_info" required="True"/>
 
                     <group col="2" string="Sobre el solicitante" >
                         <field name="user_id" required="True"/>
@@ -44,9 +47,14 @@
                         <field name="emp_credit" />
                         <field name="emp_seizure"/>
                         <field name="amount" required="True"/>
+                        <field name="fees" required="True"/>
                     </group>
-                    <group col="1"  >
+                    <group col="2"  >
                         <field name="magenta_credit"  groups="magenta.blancoamor_credito" />
+                        <field name="capital"  groups="magenta.blancoamor_credito" />
+                        <field name="total_paga"  groups="magenta.blancoamor_credito" />
+
+
                     </group>
 
         </sheet>

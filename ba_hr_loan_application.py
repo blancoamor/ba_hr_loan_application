@@ -40,11 +40,23 @@ class ba_hr_loan_application(models.Model):
 
     _inherit = ['mail.thread']
 
+    @api.one
+    def _compute_info(self):
+        self.loan_info = self.env['ir.config_parameter'].search([('key','=','loan_info')])['value']
+    
+    def _default_info(self):
+        return  self.env['ir.config_parameter'].search([('key','=','loan_info')])['value']
+
+
     state = fields.Selection([('request','Solicitado'),
                             ('gestion','En Gestion'),('deny','Denegado'),('apply','Aprobado'),('close','Finalizado')],
                             track_visibility='onchange' , default = 'request' )
 
     user_id = fields.Many2one('res.users', required=True) 
+
+    loan_info = fields.Html('info' ,compute="_compute_info",default=_default_info ) 
+
+
 
     name = fields.Many2one('hr.employee' ,compute="_compute_employee") 
 
@@ -63,7 +75,16 @@ class ba_hr_loan_application(models.Model):
     amount = fields.Selection([('5000','5000'),('3000','3000')],
                             string="Monto solicitado", required=True)
     
+    fees = fields.Selection([('1','1'),('2','2'),('3','3'),('4','4'),('5','5')],
+                            string="Candidad de cuotas")
+    
+
     magenta_credit = fields.Many2one('magenta.ayuda','Credito') 
+
+    capital = fields.Float("Capital", related='magenta_credit.capital',store=True)
+    total_paga = fields.Float('Total Pagado',related='magenta_credit.total_paga',store=True)
+    #magenta_ayuda_ctas_ids = fields.One2many('magenta.ayuda.ctas','magenta_ayuda_id',)
+
 
 
 
