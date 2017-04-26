@@ -23,8 +23,8 @@
                 <form string="Prestamo">
                   <header>
                             <button name="deny" string="Denegar" type="object" class="oe_highlight" groups="ba_conf.blancoamor_rh" />
-                            <button name="gestion" string="Gestionar" type="object" class="oe_highlight"  groups="ba_conf.blancoamor_rh">
-                            <button name="apply" string="Aprobar" type="object" class="oe_highlight" groups="ba_conf.blancoamor_rh">
+                            <button name="gestion" string="Gestionar" type="object" class="oe_highlight"  groups="ba_conf.blancoamor_rh"/>
+                            <button name="apply" string="Aprobar" type="object" class="oe_highlight" groups="ba_conf.blancoamor_rh"/>
 
                             <field name="state" widget="statusbar" />
                   </header>
